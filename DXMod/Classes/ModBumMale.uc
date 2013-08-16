@@ -1,0 +1,38 @@
+//-----------------------------------------------------------
+//
+//-----------------------------------------------------------
+class ModBumMale extends ModHumanCivilian;
+
+defaultproperties
+{
+     CarcassType=Class'DeusEx.BumMaleCarcass'
+     WalkingSpeed=0.213333
+     bFearShot=False
+     bFearCarcass=False
+     BaseAssHeight=-23.000000
+     MeleeRange=10.000000
+     GroundSpeed=240.000000
+     Health=200
+     Intelligence=BRAINS_HUMAN
+     CombatStyle=1.000000
+     HealthHead=200
+     HealthTorso=200
+     HealthLegLeft=200
+     HealthLegRight=200
+     HealthArmLeft=200
+     HealthArmRight=200
+     Mesh=LodMesh'DeusExCharacters.GM_Trench'
+     MultiSkins(0)=Texture'DeusExCharacters.Skins.BumMaleTex0'
+     MultiSkins(1)=Texture'DeusExCharacters.Skins.BumMaleTex2'
+     MultiSkins(2)=Texture'DeusExCharacters.Skins.PantsTex4'
+     MultiSkins(3)=Texture'DeusExCharacters.Skins.BumMaleTex0'
+     MultiSkins(4)=Texture'DeusExCharacters.Skins.TrenchShirtTex1'
+     MultiSkins(5)=Texture'DeusExCharacters.Skins.BumMaleTex2'
+     MultiSkins(6)=Texture'DeusExItems.Skins.GrayMaskTex'
+     MultiSkins(7)=Texture'DeusExItems.Skins.BlackMaskTex'
+     CollisionRadius=20.000000
+     CollisionHeight=47.500000
+     BindName="Bum"
+     FamiliarName="Bum"
+     UnfamiliarName="Bum"
+}
