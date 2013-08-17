@@ -17,30 +17,30 @@ function Carcass SpawnCarcass()
 	local float size;
 
 	// if we really got blown up good, gib us and don't display a carcass
-	//if ((Health < -100) && !IsA('Robot'))
-	//{
-		//size = (CollisionRadius + CollisionHeight) / 2;
-		//if (size > 10.0)
-		//{
-			//for (i=0; i<size/4.0; i++)
-			//{
-				//loc.X = (1-2*FRand()) * CollisionRadius;
-				//loc.Y = (1-2*FRand()) * CollisionRadius;
-				//loc.Z = (1-2*FRand()) * CollisionHeight;
-				//loc += Location;
-				//chunk = spawn(class'FleshFragment', None,, loc);
-				//if (chunk != None)
-				//{
-					//chunk.DrawScale = size / 25;
-					//chunk.SetCollisionSize(chunk.CollisionRadius / chunk.DrawScale, chunk.CollisionHeight / chunk.DrawScale);
-					//chunk.bFixedRotationDir = True;
-					//chunk.RotationRate = RotRand(False);
-				//}
-			//}
-		//}
+	if ((Health < -100) && !IsA('Robot'))
+	{
+		size = (CollisionRadius + CollisionHeight) / 2;
+		if (size > 10.0)
+		{
+			for (i=0; i<size/4.0; i++)
+			{
+				loc.X = (1-2*FRand()) * CollisionRadius;
+				loc.Y = (1-2*FRand()) * CollisionRadius;
+				loc.Z = (1-2*FRand()) * CollisionHeight;
+				loc += Location;
+				chunk = spawn(class'FleshFragment', None,, loc);
+				if (chunk != None)
+				{
+					chunk.DrawScale = size / 25;
+					chunk.SetCollisionSize(chunk.CollisionRadius / chunk.DrawScale, chunk.CollisionHeight / chunk.DrawScale);
+					chunk.bFixedRotationDir = True;
+					chunk.RotationRate = RotRand(False);
+				}
+			}
+		}
 
-		//return None;
-	//}
+		return None;
+	}
 
 	// spawn the carcass
 	carc = DeusExCarcass(Spawn(CarcassType));
