@@ -41,7 +41,8 @@ function Fire(float Value)
 
 defaultproperties
 {
-     bEMP=True
+     bPenetrating=False
+	 bEMP=True
      bRechargeable=True
      StunLength=10.000000
      LowAmmoWaterMark=6
