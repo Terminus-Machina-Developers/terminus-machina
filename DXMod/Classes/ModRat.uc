@@ -87,4 +87,5 @@ function Carcass SpawnCarcass()
 defaultproperties
 {
      CarcassType=Class'DXMod.ModRatCarcass'
+	 InitialInventory(0)=(Inventory=Class'DXMod.RatMeat')
 }
