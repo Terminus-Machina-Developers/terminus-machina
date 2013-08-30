@@ -35,7 +35,7 @@ defaultproperties
      EnviroEffective=ENVEFF_Air
      ShotTime=1.500000
      reloadTime=2.000000
-     HitDamage=200
+     HitDamage=400
      maxRange=6000000 //assuming each DX unit is about 1.5 inches
      AccurateRange=3000000
      BaseAccuracy=0.100000
@@ -46,7 +46,7 @@ defaultproperties
      bHasMuzzleFlash=False
      bUseWhileCrouched=False
      mpReloadTime=2.000000
-     mpHitDamage=200
+     mpHitDamage=400
      mpAccurateRange=3000000
      mpMaxRange=3000000
      mpReloadCount=6
