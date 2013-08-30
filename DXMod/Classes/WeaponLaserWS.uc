@@ -28,29 +28,27 @@ function renderoverlays(canvas canvas)
 
 defaultproperties
 {
-     bPenetrating=False
-	 bEMP=True
      bRechargeable=True
-     StunLength=10.000000
      LowAmmoWaterMark=6
      GoverningSkill=Class'DeusEx.SkillWeaponPistol'
-     NoiseLevel=0.000000
+     NoiseLevel=0.010000
      EnviroEffective=ENVEFF_Air
      ShotTime=1.500000
      reloadTime=2.000000
-     HitDamage=25
-     maxRange=2000
-     AccurateRange=2000
+     HitDamage=200
+     maxRange=6000000 //assuming each DX unit is about 1.5 inches
+     AccurateRange=3000000
      BaseAccuracy=0.100000
+	 recoilStrength=0.0
      bCanHaveScope=True
      bCanHaveLaser=True
      bCanHaveSilencer=True
      bHasMuzzleFlash=False
      bUseWhileCrouched=False
      mpReloadTime=2.000000
-     mpHitDamage=25
-     mpAccurateRange=9000
-     mpMaxRange=9000
+     mpHitDamage=200
+     mpAccurateRange=3000000
+     mpMaxRange=3000000
      mpReloadCount=6
      bCanHaveModBaseAccuracy=True
      bCanHaveModReloadCount=True
@@ -79,7 +77,7 @@ defaultproperties
      largeIconWidth=159
      largeIconHeight=47
      invSlotsX=4
-     Description="anti-drone laser"
+     Description="High-powered laser weapon suitable for anti-material purposes. Cutting-edge adaptive optics give it excellent range (5+ kilometers) with very little energy lost in the intervening atmosphere. As a result, it is a near-silent weapon. Very high energy drain per shot. Nicknamed 'Wingclipper' due to its use against drones."
      beltDescription="Wingclipper"
      Mesh=LodMesh'DeusExItems.SniperRiflePickup'
      MultiSkins(0)=Texture'DXModItems.Skins.EMPGunTex3rd'
