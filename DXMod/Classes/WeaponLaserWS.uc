@@ -29,8 +29,8 @@ function renderoverlays(canvas canvas)
 defaultproperties
 {
      bRechargeable=True
-	 RechargeCost=30
-     LowAmmoWaterMark=6
+	 RechargeCost=25
+     LowAmmoWaterMark=1
      GoverningSkill=Class'DeusEx.SkillWeaponPistol'
      NoiseLevel=0.010000 //same noise level as stealth pistol
      EnviroEffective=ENVEFF_Air
@@ -50,15 +50,15 @@ defaultproperties
      mpHitDamage=400
      mpAccurateRange=3000000
      mpMaxRange=3000000
-     mpReloadCount=6
+     mpReloadCount=1
      bCanHaveModBaseAccuracy=True
      bCanHaveModReloadCount=True
      bCanHaveModAccurateRange=True
      bCanHaveModReloadTime=True
      bCanHaveModRecoilStrength=True
-     AmmoName=Class'DeusEx.AmmoBattery'
-     ReloadCount=6
-     PickupAmmoCount=6
+     AmmoName=Class'DeusEx.AmmoLaserBattery'
+     ReloadCount=1
+     PickupAmmoCount=1
      bInstantHit=True
      FireOffset=(X=-20.000000,Y=2.000000,Z=30.000000)
      shakemag=50.000000
