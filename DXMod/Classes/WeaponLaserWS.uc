@@ -29,9 +29,10 @@ function renderoverlays(canvas canvas)
 defaultproperties
 {
      bRechargeable=True
+	 RechargeCost=30
      LowAmmoWaterMark=6
      GoverningSkill=Class'DeusEx.SkillWeaponPistol'
-     NoiseLevel=0.010000
+     NoiseLevel=0.010000 //same noise level as stealth pistol
      EnviroEffective=ENVEFF_Air
      ShotTime=1.500000
      reloadTime=2.000000

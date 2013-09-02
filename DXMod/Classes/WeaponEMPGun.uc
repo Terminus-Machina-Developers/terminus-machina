@@ -44,6 +44,7 @@ defaultproperties
      bPenetrating=False
 	 bEMP=True
      bRechargeable=True
+	 RechargeCost=30
      StunLength=10.000000
      LowAmmoWaterMark=6
      GoverningSkill=Class'DeusEx.SkillWeaponPistol'

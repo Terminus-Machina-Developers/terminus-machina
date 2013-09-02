@@ -96,6 +96,7 @@ function UseSelectedItem()
 {
 	local Inventory inv;
 	local int numCopies;
+	local int clipSize;	//size of weapon's clip for purposes of recharging from bioelectic
 
 	inv = Inventory(selectedItem.GetClientObject());
 
@@ -109,9 +110,10 @@ function UseSelectedItem()
 		{
             if ((ModWeapon(inv).bRechargeable || Weapon(inv).AmmoName == class'DeusEx.AmmoBattery')&& ModWeapon(inv).RechargeCost <= Player.Energy)
 		    {
-		        Weapon(inv).AmmoType.UseAmmo(-6);
+				clipSize=Weapon(inv).ReloadCount;
+		        Weapon(inv).AmmoType.UseAmmo(-1 * clipSize);
 		        //ModWeapon(inv).ReloadCount = 6;
-		        Player.Energy -= 30;
+		        Player.Energy -= ModWeapon(inv).RechargeCost;
 		        Player.PlaySound(Sound'DeusExSounds.Weapons.ProdReloadEnd');
 		        Player.ClientMessage("Weapon Recharged");
 		        return;
