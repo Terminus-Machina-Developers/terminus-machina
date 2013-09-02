@@ -61,29 +61,31 @@ simulated function ProcessTraceHit(Actor Other, Vector HitLocation, Vector HitNo
 			    if( Other.IsA('ModScriptedPawn')){
 			        if( ModScriptedPawn(Other).bElectronic ){
 			             if( bEMP ){
-			                    //stun if headshot or health less than 95%
-			                    //(it takes two shots to stun if not a headshot)
-			                 	soffset = (HitLocation - Other.Location) << Other.Rotation;
+							//stun if headshot or health less than 95%
+							//(it takes two shots to stun if not a headshot)
+							soffset = (HitLocation - Other.Location) << Other.Rotation;
 
-                            	// calculate our hit extents
-                            	headOffsetZ = Other.CollisionHeight * 0.58;
+							// calculate our hit extents
+							headOffsetZ = Other.CollisionHeight * 0.58;
 
-                            	if (soffset.z > headOffsetZ || ModScriptedPawn(Other).Health < ModScriptedPawn(Other).default.Health)
-                            	{
-                            	     damageType = 'Stunned';
-                            	     ModScriptedPawn(Other).StunLength = StunLength;
-                                 }
-			                     Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
-			                     //Instigator.ClientMessage(orighealth - ModScriptedPawn(Other).Health);
-                         }
+							if (soffset.z > headOffsetZ || ModScriptedPawn(Other).Health < ModScriptedPawn(Other).default.Health)
+							{
+								 damageType = 'Stunned';
+								 ModScriptedPawn(Other).StunLength = StunLength;
+							 }
+							 Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
+							 //Instigator.ClientMessage(orighealth - ModScriptedPawn(Other).Health);
+                         } else {
+							Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
+						 }
                     }
                     else{
                          if( !bEMP ){
                              Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
-			             }
+			             } 
                     }
 			    }
-			    else{
+			    else if(!bEMP){
 				    Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
 			    }
             }
