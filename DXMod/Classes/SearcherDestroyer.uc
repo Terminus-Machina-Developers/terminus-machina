@@ -55,13 +55,15 @@ state Waiting extends Active
 	    //bHidden=true;
 	    AmbientSound=none;
 	    //GotoState('Searching');
+		bCollideWorld=true;
+	    SetCollision(false, false, false);
     }
 
 
 }
 
 //Waiting for a random time to start searching
-state PreSearching
+state PreSearching extends Active
 {
 
 Begin:
@@ -71,7 +73,7 @@ Begin:
 }
 
 //Looking for target to destroy - usually player
-state Searching
+state Searching extends Active
 {
     function BeginState()
     {
@@ -213,7 +215,7 @@ state Searching
 }
 
 //TIME TO DIE FUCKA
-state Destroying
+state Destroying extends Active
 {
 	function BeginState()
 	{
@@ -229,8 +231,8 @@ state Destroying
 	    PP.ClientMessage("Searcher-Destroyer drone inbound!!!");
 	    PP.PlaySound(Sound'DeusExSounds.UserInterface.Menu_Incoming',,,true );
 	    bHidden=false;
-	    bCollideWorld=false;
-	    SetCollision(false, false, false);
+	    bCollideWorld=true;
+	    SetCollision(Default.bCollideActors, Default.bBlockActors, Default.bBlockPlayers); //I had to set these two this way for it to be hit by weapons fire
 	    SetPhysics(PHYS_None);
  		AmbientSound=Sound'DXModSounds.Misc.SearcherDestroyer';//Sound'Ambient.Ambient.Helicopter2';
  		if(RandRange(0,1) < 0.5){
