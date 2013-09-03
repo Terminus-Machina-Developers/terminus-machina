@@ -52,11 +52,11 @@ state Waiting extends Active
 	function BeginState()
 	{
 	    //GetPlayerPawn().ClientMessage("Entering Waiting State");
-	    //bHidden=true;
+	    bHidden=true;
 	    AmbientSound=none;
 	    //GotoState('Searching');
-		bCollideWorld=true;
-	    SetCollision(false, false, false);
+		//bCollideWorld=false;
+	    //SetCollision(Default.bCollideActors, Default.bBlockActors, Default.bBlockPlayers);
     }
 
 
@@ -231,8 +231,8 @@ state Destroying extends Active
 	    PP.ClientMessage("Searcher-Destroyer drone inbound!!!");
 	    PP.PlaySound(Sound'DeusExSounds.UserInterface.Menu_Incoming',,,true );
 	    bHidden=false;
-	    bCollideWorld=true;
-	    SetCollision(Default.bCollideActors, Default.bBlockActors, Default.bBlockPlayers); //I had to set these two this way for it to be hit by weapons fire
+		bCollideWorld=false;
+	    SetCollision(Default.bCollideActors, Default.bBlockActors, Default.bBlockPlayers); //I had to set these this way for it to be hit by weapons fire
 	    SetPhysics(PHYS_None);
  		AmbientSound=Sound'DXModSounds.Misc.SearcherDestroyer';//Sound'Ambient.Ambient.Helicopter2';
  		if(RandRange(0,1) < 0.5){
