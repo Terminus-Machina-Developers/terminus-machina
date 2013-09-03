@@ -401,5 +401,5 @@ defaultproperties
      SoundVolume=0
      AmbientSound=None
 	 bInvincible=False
-	 HitPoints=1
+	 HitPoints=100
 }
