@@ -67,7 +67,7 @@ defaultproperties
      CockingSound=Sound'DeusExSounds.Weapons.RifleReload'
      SelectSound=Sound'DeusExSounds.Weapons.RifleSelect'
      InventoryGroup=25
-     ItemName="Wingclipper"
+     ItemName="PWNER"
      PlayerViewOffset=(X=20.000000,Y=-2.000000,Z=-30.000000)
      PlayerViewMesh=LodMesh'DeusExItems.SniperRifle'
      PickupViewMesh=LodMesh'DeusExItems.SniperRiflePickup'
@@ -78,8 +78,8 @@ defaultproperties
      largeIconWidth=159
      largeIconHeight=47
      invSlotsX=4
-     Description="High-powered laser weapon suitable for anti-material purposes. Cutting-edge adaptive optics give it excellent range (5+ kilometers) with very little energy lost in the intervening atmosphere. As a result, it is a near-silent weapon. Very high energy drain per shot. Nicknamed 'Wingclipper' due to its use against drones."
-     beltDescription="Wingclipper"
+     Description="High-powered laser weapon suitable for anti-material purposes. Cutting-edge adaptive optics give it excellent range (5+ kilometers) with very little energy lost in the intervening atmosphere. As a result, it is a near-silent weapon. Very high energy drain per shot."
+     beltDescription="PWNER"
      Mesh=LodMesh'DeusExItems.SniperRiflePickup'
      MultiSkins(0)=Texture'DXModItems.Skins.EMPGunTex3rd'
      MultiSkins(1)=Texture'DXModItems.Skins.EMPGunTex3rd'
