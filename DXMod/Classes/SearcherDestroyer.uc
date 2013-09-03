@@ -47,12 +47,12 @@ auto state Flying
 	}
 }
 
-state Waiting
+state Waiting extends Active
 {
 	function BeginState()
 	{
 	    //GetPlayerPawn().ClientMessage("Entering Waiting State");
-	    bHidden=true;
+	    //bHidden=true;
 	    AmbientSound=none;
 	    //GotoState('Searching');
     }
@@ -389,6 +389,7 @@ function FireMissilesAt(name targetTag)
 
 defaultproperties
 {
+	 ItemName="Search/Destroyer Drone"
      FlightAxis="X"
      RunwayWidth=150.000000
      RunwayLength=4000.000000
@@ -399,4 +400,6 @@ defaultproperties
      SoundRadius=136
      SoundVolume=0
      AmbientSound=None
+	 bInvincible=False
+	 HitPoints=1
 }
