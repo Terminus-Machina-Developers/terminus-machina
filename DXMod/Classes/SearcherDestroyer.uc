@@ -404,5 +404,6 @@ defaultproperties
      AmbientSound=None
 	 bInvincible=False
 	 HitPoints=100
+	 minDamageThreshold=50
 	 bExplosive=True
 }
