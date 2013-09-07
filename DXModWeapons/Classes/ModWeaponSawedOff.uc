@@ -1,9 +1,7 @@
 //-----------------------------------------------------------
 //
 //-----------------------------------------------------------
-class ModWeaponSawedOff expands WeaponSawedOff;
-
-
+class ModWeaponSawedOff extends WeaponSawedOffShotgun;
 
 var bool bMultiCopiesAllowed;
 
