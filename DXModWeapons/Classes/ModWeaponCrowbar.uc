@@ -221,4 +221,5 @@ function SpawnOil(Vector HitLocation, Vector HitNormal)
 defaultproperties
 {
      bMultiCopiesAllowed=True
+	 Description="A crowbar. Hit someone or something with it. Repeat."
 }
