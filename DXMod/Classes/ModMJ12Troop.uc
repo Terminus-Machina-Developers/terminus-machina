@@ -23,7 +23,7 @@ function SpurtBlood()
 
 defaultproperties
 {
-     PhaceTextures(0)=Texture'DXMod.UserInterface.TyrPhace_1'
+	 PhaceTextures(0)=Texture'DXMod.UserInterface.TyrPhace_1'
      bElectronic=True
      CarcassType=Class'DXMod.ModMJ12Carcass'
      WalkingSpeed=0.296000

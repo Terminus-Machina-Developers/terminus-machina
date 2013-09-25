@@ -135,6 +135,30 @@ local ModMale plyr;
    // }
 }
 
+function bool FilterDamageType(Pawn instigatedBy, Vector hitLocation,
+                               Vector offset, Name damageType)
+{
+	// Special cases for certain damage types
+	if (damageType == 'HalonGas')
+		if (bOnFire)
+			ExtinguishFire();
+
+	if (damageType == 'EMP')
+	{
+		CloakEMPTimer += 10;  // hack - replace with skill-based value
+		if (CloakEMPTimer > 20)
+			CloakEMPTimer = 20;
+		EnableCloak(bCloakOn);
+		if (!bElectronic)
+		{
+			return false;
+		}
+	}
+
+	return true;
+
+}
+
 // ----------------------------------------------------------------------
 // ModifyDamage()
 // ----------------------------------------------------------------------
@@ -196,8 +220,8 @@ function float ModifyDamage(int Damage, Pawn instigatedBy, Vector hitLocation,
 	else if (Inventory != None) //then check if carrying armor
 		actualDamage = Inventory.ReduceDamage(actualDamage, DamageType, HitLocation);
 
-	// gas, EMP and nanovirus do no damage
-	if (damageType == 'TearGas' || damageType == 'EMP' || damageType == 'NanoVirus')
+	// gas and nanovirus do no damage; EMP does no damage unless electronic
+	if (damageType == 'TearGas' || (damageType == 'EMP' && !bElectronic) || damageType == 'NanoVirus')
 		actualDamage = 0;
 
 	return actualDamage;
