@@ -7,6 +7,53 @@ class ModMJ12Troop extends ModHumanMilitary;
 #exec texture IMPORT NAME=TyrPhace_1 FILE=Images\TyrPhace.pcx GROUP=UserInterface MIPS=OFF
 #exec OBJ LOAD FILE=DXModItems
 
+var ParticleGenerator sparkGen;
+//following four functions are so we can spark when hit by EMP
+function InitGenerator()
+{
+	local Vector loc;
+
+	if ((sparkGen == None) || (sparkGen.bDeleteMe))
+	{
+		loc = Location;
+		loc.z += CollisionHeight/2;
+		sparkGen = Spawn(class'ParticleGenerator', Self,, loc, rot(16384,0,0));
+		if (sparkGen != None)
+			sparkGen.SetBase(Self);
+	}
+}
+
+function DestroyGenerator()
+{
+	if (sparkGen != None)
+	{
+		sparkGen.DelayedDestroy();
+		sparkGen = None;
+	}
+}
+
+function ShowEmpEffects()
+{
+	InitGenerator();
+	sparkGen.particleTexture = Texture'Effects.Fire.SparkFX1';
+	sparkGen.particleDrawScale = 0.2;
+	sparkGen.bRandomEject = True;
+	sparkGen.ejectSpeed = 100.0;
+	sparkGen.bGravity = True;
+	sparkGen.bParticlesUnlit = True;
+	sparkGen.riseRate = 10;
+	sparkGen.spawnSound = Sound'Spark2';
+	sparkGen.checkTime=0.050000;
+	SetTimer(0.2, True);
+	if (Health <= 0){
+		DestroyGenerator();
+	}
+}
+
+function Timer(){
+	DestroyGenerator();
+}
+
 // ----------------------------------------------------------------------
 // SpurtBlood()
 // ----------------------------------------------------------------------

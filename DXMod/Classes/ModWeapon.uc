@@ -75,6 +75,7 @@ simulated function ProcessTraceHit(Actor Other, Vector HitLocation, Vector HitNo
 							 }
 							 Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
 							 //Instigator.ClientMessage(orighealth - ModScriptedPawn(Other).Health);
+							 ModMJ12Troop(Other).ShowEmpEffects();
                          } else {
 							Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
 						 }
