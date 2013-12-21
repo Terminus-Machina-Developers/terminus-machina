@@ -93,6 +93,9 @@ simulated function ProcessTraceHit(Actor Other, Vector HitLocation, Vector HitNo
 			    else if(!bEMP){
 				    Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
 			    }
+				else if (Other.IsA('Robot')){
+					Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
+				}
             }
             if (bHandToHand)
 				SelectiveSpawnEffects( HitLocation, HitNormal, Other, HitDamage * mult);
