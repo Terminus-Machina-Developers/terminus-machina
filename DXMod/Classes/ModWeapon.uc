@@ -83,7 +83,11 @@ simulated function ProcessTraceHit(Actor Other, Vector HitLocation, Vector HitNo
                     else{
                          if( !bEMP ){
                              Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
-			             } 
+			             }
+						//if it's another sort of robot besides Tyr, it should still take EMP damage
+						 else if (Other.IsA('ModRobot')){
+							 Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
+						 }
                     }
 			    }
 			    else if(!bEMP){
