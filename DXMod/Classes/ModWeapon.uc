@@ -94,6 +94,7 @@ simulated function ProcessTraceHit(Actor Other, Vector HitLocation, Vector HitNo
 				    Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
 			    }
 				else if (Other.IsA('Robot')){
+					//if it's another sort of robot besides Tyr, it should still take EMP damage
 					Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
 				}
             }
@@ -111,6 +112,37 @@ simulated function ProcessTraceHit(Actor Other, Vector HitLocation, Vector HitNo
       else
          DeusExMPGame(Level.Game).TrackWeapon(self,0);
    }
+}
+
+function name WeaponDamageType()
+{
+	//copying and modifying this function from superclass so the EMPgun can cause EMP damage
+	local name                    damageType;
+	local Class<DeusExProjectile> projClass;
+
+	projClass = Class<DeusExProjectile>(ProjectileClass);
+	if (bEMP)
+	{
+		return 'EMP';
+	}
+	
+	if (bInstantHit)
+	{
+		if (StunDuration > 0)
+			damageType = 'Stunned';
+		else
+			damageType = 'Shot';
+
+		if (AmmoType != None)
+			if (AmmoType.IsA('AmmoSabot'))
+				damageType = 'Sabot';
+	}
+	else if (projClass != None)
+		damageType = projClass.Default.damageType;
+	else
+		damageType = 'None';
+
+	return (damageType);
 }
 
 function bool HandlePickupQuery(Inventory Item)
