@@ -102,33 +102,13 @@ simulated function ProcessTraceHit(Actor Other, Vector HitLocation, Vector HitNo
 
 function name WeaponDamageType()
 {
-	//copying and modifying this function from superclass so the EMPgun can cause EMP damage
-	local name                    damageType;
-	local Class<DeusExProjectile> projClass;
-
-	projClass = Class<DeusExProjectile>(ProjectileClass);
+	//minor tweak to superclass method to handle EMP damage
 	if (bEMP)
 	{
 		return 'EMP';
 	}
 	
-	if (bInstantHit)
-	{
-		if (StunDuration > 0)
-			damageType = 'Stunned';
-		else
-			damageType = 'Shot';
-
-		if (AmmoType != None)
-			if (AmmoType.IsA('AmmoSabot'))
-				damageType = 'Sabot';
-	}
-	else if (projClass != None)
-		damageType = projClass.Default.damageType;
-	else
-		damageType = 'None';
-
-	return (damageType);
+	return super.WeaponDamageType();
 }
 
 function bool HandlePickupQuery(Inventory Item)
