@@ -59,44 +59,30 @@ simulated function ProcessTraceHit(Actor Other, Vector HitLocation, Vector HitNo
 		{
 			if ( Role == ROLE_Authority ) {
 			    if( Other.IsA('ModScriptedPawn')){
-			        if( ModScriptedPawn(Other).bElectronic ){
-			             if( bEMP ){
-							//stun if headshot or health less than 95%
-							//(it takes two shots to stun if not a headshot)
-							soffset = (HitLocation - Other.Location) << Other.Rotation;
+			        if( ModScriptedPawn(Other).bElectronic && bEMP){
+						//stun if headshot or health less than 95%
+						//(it takes two shots to stun if not a headshot)
+						 soffset = (HitLocation - Other.Location) << Other.Rotation;
 
-							// calculate our hit extents
-							headOffsetZ = Other.CollisionHeight * 0.58;
+						// calculate our hit extents
+						headOffsetZ = Other.CollisionHeight * 0.58;
 
-							if (soffset.z > headOffsetZ || ModScriptedPawn(Other).Health < ModScriptedPawn(Other).default.Health)
-							{
-								 damageType = 'Stunned';
-								 ModScriptedPawn(Other).StunLength = StunLength;
-							 }
-							 Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
-							 //Instigator.ClientMessage(orighealth - ModScriptedPawn(Other).Health);
-							 ModMJ12Troop(Other).ShowEmpEffects();
-                         } else {
-							Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
+						if (soffset.z > headOffsetZ || ModScriptedPawn(Other).Health < ModScriptedPawn(Other).default.Health)
+						{
+							 damageType = 'Stunned';
+							 ModScriptedPawn(Other).StunLength = StunLength;
 						 }
+						 Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
+						 //Instigator.ClientMessage(orighealth - ModScriptedPawn(Other).Health);
+						 ModMJ12Troop(Other).ShowEmpEffects();
                     }
                     else{
-                         if( !bEMP ){
-                             Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
-			             }
-						//if it's another sort of robot besides Tyr, it should still take EMP damage
-						 else if (Other.IsA('ModRobot')){
-							 Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
-						 }
+						 Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType); 
                     }
 			    }
-			    else if(!bEMP){
+			    else {
 				    Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
 			    }
-				else if (Other.IsA('Robot')){
-					//if it's another sort of robot besides Tyr, it should still take EMP damage
-					Other.TakeDamage(HitDamage * mult, Pawn(Owner), HitLocation, 1000.0*X, damageType);
-				}
             }
             if (bHandToHand)
 				SelectiveSpawnEffects( HitLocation, HitNormal, Other, HitDamage * mult);
