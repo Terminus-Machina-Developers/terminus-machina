@@ -108,12 +108,12 @@ function UseSelectedItem()
 
    		if (inv.IsA('ModWeapon') || Weapon(inv).AmmoName == class'DeusEx.AmmoBattery')
 		{
-            if ((ModWeapon(inv).bRechargeable || Weapon(inv).AmmoName == class'DeusEx.AmmoBattery')&& ModWeapon(inv).RechargeCost <= Player.Energy)
+            if ((ModWeapon(inv).bRechargeable || Weapon(inv).AmmoName == class'DeusEx.AmmoBattery')&& (ModWeapon(inv).RechargeCost / Weapon(inv).ReloadCount) <= Player.Energy)
 		    {
 				clipSize=Weapon(inv).ReloadCount;
-		        Weapon(inv).AmmoType.UseAmmo(-1 * clipSize);
+		        Weapon(inv).AmmoType.UseAmmo(-1);
 		        //ModWeapon(inv).ReloadCount = 6;
-		        Player.Energy -= ModWeapon(inv).RechargeCost;
+		        Player.Energy -= (ModWeapon(inv).RechargeCost / clipSize);
 		        Player.PlaySound(Sound'DeusExSounds.Weapons.ProdReloadEnd');
 		        Player.ClientMessage("Weapon Recharged");
 		        return;

@@ -16,7 +16,7 @@ defaultproperties
      largeIcon=Texture'DeusExUI.Icons.LargeIconAmmoProd'
      largeIconWidth=17
      largeIconHeight=46
-     Description="A portable charging unit for the Wingclipper."
+     Description="A portable charging unit for the PWNER laser."
      beltDescription="LASER CHARGER"
      Mesh=LodMesh'DeusExItems.AmmoProd'
      CollisionRadius=2.100000
