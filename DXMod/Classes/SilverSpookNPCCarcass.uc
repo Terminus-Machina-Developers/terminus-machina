@@ -1,11 +1,14 @@
 //-----------------------------------------------------------
 //
 //-----------------------------------------------------------
+//class SilverSpookNPCCarcass extends JCDentonMaleCarcass;
 class SilverSpookNPCCarcass extends DeusExCarcass;
 
 defaultproperties
 {
-     Mesh=LodMesh'DeusExCharacters.GM_Trench'
+     Mesh2=LodMesh'DeusExCharacters.GM_Trench_CarcassB'
+     Mesh3=LodMesh'DeusExCharacters.GM_Trench_CarcassC'
+     Mesh=LodMesh'DeusExCharacters.GM_Trench_Carcass'
      MultiSkins(0)=Texture'DXModCharacters.Skins.TMFaceTex'
      MultiSkins(1)=Texture'DeusExCharacters.Skins.JCDentonTex2'
      MultiSkins(2)=Texture'DeusExCharacters.Skins.JCDentonTex3'
