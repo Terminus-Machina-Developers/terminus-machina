@@ -1,7 +1,6 @@
 //-----------------------------------------------------------
 //
 //-----------------------------------------------------------
-//class SilverSpookNPCCarcass extends JCDentonMaleCarcass;
 class SilverSpookNPCCarcass extends DeusExCarcass;
 
 defaultproperties
