@@ -1,7 +1,7 @@
 //-----------------------------------------------------------
 //
 //-----------------------------------------------------------
-class SpliceGirl1Carcass expands DeusExCarcass;
+class SpliceGirl2Carcass expands DeusExCarcass;
 
 defaultproperties
 {
