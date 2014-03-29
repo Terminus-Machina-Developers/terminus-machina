@@ -3,8 +3,47 @@
 //-----------------------------------------------------------
 class SignalJammer expands DeusExPickup;
 
+// ----------------------------------------------------------------------
+// state Activated
+// ----------------------------------------------------------------------
+
+state Activated
+{
+	function Tick(float deltaTime)
+	{
+		local DeusExPlayer player;
+		Super.Tick(deltaTime);
+		player = DeusExPlayer(Owner);
+
+		if (player.Energy > 0)
+		{
+		    player.Energy -= (1.0 * deltaTime);
+		}
+	}
+	function Activate()
+	{
+		local DeusExPlayer player;
+
+		Super.Activate();
+
+		player = DeusExPlayer(Owner);
+	}
+
+	function BeginState()
+	{
+		local DeusExPlayer player;
+	
+		Super.BeginState();
+
+		player = DeusExPlayer(Owner);
+	}
+Begin:
+}
+
 defaultproperties
 {
+	 RechargeRate = 1.0
+     bActivatable=True
      maxCopies=20
      bCanHaveMultipleCopies=True
      ItemName="Signal Jammer"
