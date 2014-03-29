@@ -11,19 +11,28 @@ state Activated
 {
 	function Tick(float deltaTime)
 	{
+		local float ConsumptionRate;
 		local DeusExPlayer player;
 		Super.Tick(deltaTime);
+		ConsumptionRate = 5.0; //300% bioelectric consumed per minute
 		player = DeusExPlayer(Owner);
 
 		if (player.Energy > 0)
 		{
-		    player.Energy -= (1.0 * deltaTime);
+		    player.Energy -= (ConsumptionRate * deltaTime);
+		} else 
+		{
+			GetPlayerPawn().ClientMessage("Energy Depleted: jammer shutdown");
+			GotoState('DeActivated');
 		}
 	}
 	function Activate()
 	{
 		local DeusExPlayer player;
-
+		//if (player.Energy <= 0)
+		//{
+		//	GotoState('DeActivated');
+		//}
 		Super.Activate();
 
 		player = DeusExPlayer(Owner);
@@ -32,7 +41,10 @@ state Activated
 	function BeginState()
 	{
 		local DeusExPlayer player;
-	
+		//if (player.Energy <= 0)
+		//{
+		//	GotoState('DeActivated');
+		//}
 		Super.BeginState();
 
 		player = DeusExPlayer(Owner);
@@ -40,9 +52,24 @@ state Activated
 Begin:
 }
 
+// ----------------------------------------------------------------------
+// state DeActivated
+// ----------------------------------------------------------------------
+
+state DeActivated
+{
+	function BeginState()
+	{
+		local DeusExPlayer player;
+		
+		Super.BeginState();
+
+		player = DeusExPlayer(Owner);
+	}
+}
+
 defaultproperties
 {
-	 RechargeRate = 1.0
      bActivatable=True
      maxCopies=20
      bCanHaveMultipleCopies=True
