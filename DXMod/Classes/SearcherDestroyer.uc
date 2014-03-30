@@ -227,7 +227,7 @@ state Destroying extends Active
         if(ModMale(PP).bNoDroneStrike)
         {
 			PP.ClientMessage("Searcher-Destroyer drone jammed");
-            GotoState('Waiting');
+            GotoState('Jammed');
         } else
 		{
 	    PP.ClientMessage("Searcher-Destroyer drone inbound!!!");
@@ -389,6 +389,10 @@ function FireMissilesAt(name targetTag)
 	//}
 }
 
+}
+
+state Jammed extends Destroying
+{
 }
 
 defaultproperties
