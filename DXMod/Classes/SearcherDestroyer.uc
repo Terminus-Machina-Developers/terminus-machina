@@ -228,7 +228,8 @@ state Destroying extends Active
         {
 			PP.ClientMessage("Searcher-Destroyer drone jammed");
             GotoState('Waiting');
-        }
+        } else
+		{
 	    PP.ClientMessage("Searcher-Destroyer drone inbound!!!");
 	    PP.PlaySound(Sound'DeusExSounds.UserInterface.Menu_Incoming',,,true );
 	    bHidden=false;
@@ -242,32 +243,32 @@ state Destroying extends Active
         else{
             bReverseDir = false;
         }
-        newrot = rot(0,0,0);
- 		if(FlightAxis == "Y")
- 		    newrot.Yaw=-16384;
+			newrot = rot(0,0,0);
+			if(FlightAxis == "Y")
+				newrot.Yaw=-16384;
 
-        newVec = Location;
-        //Make a 180 and come down from the opposite direction randomly
-        if(bReverseDir)
-        {
-            if(FlightAxis == "X")
-                newVec.X += 8000;
-            else
-                newVec.Y -= 8000;
+			newVec = Location;
+			//Make a 180 and come down from the opposite direction randomly
+			if(bReverseDir)
+			{
+				if(FlightAxis == "X")
+					newVec.X += 8000;
+				else
+					newVec.Y -= 8000;
 
-            newrot.Yaw += 32768;
+				newrot.Yaw += 32768;
 
-            SetLocation( newVec);
+				SetLocation( newVec);
 
-        }
- 		SetRotation(newrot);
-		LoopAnim('Fly');
-		//FireMissilesAt('Player');
-		//MoveSmooth(vect(50,0,0));
-		SetTimer(6,false);
-		FlightZ=0;
-		FireTimer=2.0;
-
+			}
+			SetRotation(newrot);
+			LoopAnim('Fly');
+			//FireMissilesAt('Player');
+			//MoveSmooth(vect(50,0,0));
+			SetTimer(6,false);
+			FlightZ=0;
+			FireTimer=2.0;
+		}
     }
 
     function Tick(float deltaTime)
