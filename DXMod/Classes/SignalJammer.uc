@@ -70,7 +70,7 @@ state DeActivated
 
 		player = DeusExPlayer(Owner);
 		PP = GetPlayerPawn();
-		ModMale(PP).bNoDroneStrike = true;
+		ModMale(PP).bNoDroneStrike = false;
 	}
 }
 
