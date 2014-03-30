@@ -13,16 +13,19 @@ state Activated
 	{
 		local float ConsumptionRate;
 		local DeusExPlayer player;
+		local PlayerPawn PP;
 		Super.Tick(deltaTime);
-		ConsumptionRate = 5.0; //300% bioelectric consumed per minute
+		ConsumptionRate = 1.0; //60% bioelectric consumed per minute
 		player = DeusExPlayer(Owner);
+		PP = GetPlayerPawn();
 
 		if (player.Energy > 0)
 		{
+			ModMale(PP).bNoDroneStrike = true;
 		    player.Energy -= (ConsumptionRate * deltaTime);
 		} else 
 		{
-			GetPlayerPawn().ClientMessage("Energy Depleted: jammer shutdown");
+			PP.ClientMessage("Energy Depleted: jammer shutdown");
 			GotoState('DeActivated');
 		}
 	}
@@ -61,10 +64,13 @@ state DeActivated
 	function BeginState()
 	{
 		local DeusExPlayer player;
+		local PlayerPawn PP;
 		
 		Super.BeginState();
 
 		player = DeusExPlayer(Owner);
+		PP = GetPlayerPawn();
+		ModMale(PP).bNoDroneStrike = true;
 	}
 }
 

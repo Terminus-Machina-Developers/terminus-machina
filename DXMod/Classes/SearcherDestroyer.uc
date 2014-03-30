@@ -226,6 +226,7 @@ state Destroying extends Active
         PP = GetPlayerPawn();
         if(ModMale(PP).bNoDroneStrike)
         {
+			PP.ClientMessage("Searcher-Destroyer drone jammed");
             GotoState('Waiting');
         }
 	    PP.ClientMessage("Searcher-Destroyer drone inbound!!!");
