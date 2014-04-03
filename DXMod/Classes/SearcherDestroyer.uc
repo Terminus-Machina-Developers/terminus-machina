@@ -393,6 +393,193 @@ function FireMissilesAt(name targetTag)
 
 state Jammed extends Destroying
 {
+	function BeginState()
+	{
+        local PlayerPawn PP;
+        local rotator newrot;
+        local vector newVec;
+		local Actor P;
+		local ScriptedPawn enemyTarget;
+
+        PP = GetPlayerPawn();
+        
+	    bHidden=false;
+		bCollideWorld=false;
+	    SetCollision(Default.bCollideActors, Default.bBlockActors, Default.bBlockPlayers); //I had to set these this way for it to be hit by weapons fire
+	    SetPhysics(PHYS_None);
+ 		AmbientSound=Sound'DXModSounds.Misc.SearcherDestroyer';//Sound'Ambient.Ambient.Helicopter2';
+ 		if(RandRange(0,1) < 0.5){
+ 		    bReverseDir = true;
+        }
+        else{
+            bReverseDir = false;
+        }
+		newrot = rot(0,0,0);
+		if(FlightAxis == "Y")
+			newrot.Yaw=-16384;
+
+		//todo: maybe make it fly over the enemy target, rather than player
+		newVec = Location;
+		//Make a 180 and come down from the opposite direction randomly
+		if(bReverseDir)
+		{
+			if(FlightAxis == "X")
+				newVec.X += 8000;
+			else
+				newVec.Y -= 8000;
+
+			newrot.Yaw += 32768;
+
+			SetLocation( newVec);
+
+		}
+		SetRotation(newrot);
+		LoopAnim('Fly');
+		//FireMissilesAt('Player');
+		//MoveSmooth(vect(50,0,0));
+		SetTimer(6,false);
+		FlightZ=0;
+		FireTimer=2.0;
+    }
+
+    function Tick(float deltaTime)
+    {
+
+
+        local float Xpos;
+		local ScriptedPawn enemyTarget;
+		local ModMJ12Troop P;
+		local PlayerPawn PP;
+
+        local vector newVec;
+        //if(OldLocation != Location)
+        //{
+        newVec = Location; //vect(0,0,0);
+        if(FlightAxis == "X")
+        {
+            //Move backwards if reversing direction
+            if(bReverseDir)
+                newVec.X = Location.X - 1000*deltaTime;
+            else
+                newVec.X = Location.X + 1000*deltaTime;
+        }
+        else
+            if(bReverseDir)
+                newVec.Y = Location.Y + 1000*deltaTime;
+            else
+                newVec.Y = Location.Y - 1000*deltaTime;
+
+        newVec.Z+=FlightZ*deltaTime;
+
+        SetLocation(newVec);
+
+        //GetPlayerPawn().ClientMessage("DestroyTick");
+        if(FireTimer > 0)
+            FireTimer-=deltaTime;
+        else if(FireTimer > -10)
+        {
+			//find a nearby enemy for the drone to target
+			//foreach DeusExPlayer(DeusExRootWindow(GetRootWindow()).parentPawn).RadiusActors(Class'ScriptedPawn', P, 4000)
+			
+			//{
+			//	if(!P.IsA('Animal') && Player.AICanSee(P, 1.0, false, false, true, true) > 0.0)
+			//	{
+			//		enemyTarget = P;
+			//	}
+			//}
+
+			//try killing a Tyr for now
+			PP = GetPlayerPawn();
+			foreach PP.AllActors(class'ModMJ12Troop', P){
+				enemyTarget = P;
+			}
+			
+			//enemyTarget = AquireTarget();
+			//if (enemyTarget != '0')
+			//{
+			GetPlayerPawn().ClientMessage("Drone has acquired enemy target");
+			FireMissilesAtEnemy(enemyTarget);
+			//}
+            FireTimer = -20;
+            FinishTimer = 8;
+        }
+        else
+        {
+            FinishTimer -= deltaTime;
+            //Finish the flight then go into hiding
+            if(FinishTimer <= 0)
+                GotoState('Waiting');
+        }
+
+    }
+
+    function Timer()
+    {
+        FlightZ = 600;
+        //FireMissilesAt('Player');
+    }
+	
+ //Blow some shit up
+function FireMissilesAtEnemy(ScriptedPawn targetTag)
+{
+	local int i;
+	local Vector loc;
+	local SearcherDestroyer chopper;
+	//local RocketLAW rocket;
+	local RocketDrone rocket;
+	local Actor A, Target;
+    
+	Target = targetTag;
+    //foreach AllActors(class'Actor', A, targetTag)
+    //	Target = A;
+    //Target = GetPlayerPawn();
+    /*if(ModMale(Target) != none)
+    {
+        if( ModMale(Target).AugmentationSystem.GetAugLevelValue(class'AugSilverCoat') > 0)
+        {
+            GetPlayerPawn().ClientMessage("Searcher Destroyer unable to lock-on due to Silver Coat!");
+            GetPlayerPawn().PlaySound(Sound'DXModSounds.Misc.DroneThwart',,,true );
+            return;
+        }
+    }*/
+    chopper = self;
+	// fire missiles from the helicopter
+	//foreach AllActors(class'BlackHelicopter', chopper, 'chopper')
+	//{
+	    //ClientMessage("Making Rocket");
+ 	/*
+		for (i=-1; i<=1; i+=2)
+		{
+
+			loc = (i*chopper.CollisionRadius * vect(0,0.15,0)) >> chopper.Rotation;
+            loc += chopper.Location;
+			rocket = Spawn(class'RocketDrone', none,, loc, chopper.Rotation);
+            if (rocket != None)
+			{
+			    //ClientMessage("RocketMade");
+				rocket.bTracking = True;
+				rocket.Target = Target;
+				rocket.PlaySound(sound'RocketIgnite', SLOT_None, 2.0,, 2048);
+			}
+		}
+	*/
+		for (i=-1; i<=1; i+=2)
+		{
+			loc = (i*chopper.CollisionRadius * vect(0,0.15,0)) >> chopper.Rotation;
+			loc += chopper.Location;
+			//loc.X += 400;
+			rocket = Spawn(class'RocketDrone', chopper,, loc, chopper.Rotation);
+			if (rocket != None)
+			{
+				rocket.bTracking = True;
+				rocket.Target = Target;
+				rocket.PlaySound(sound'RocketIgnite', SLOT_None, 2.0,, 2048);
+			}
+		}
+
+	//}
+}
+
 }
 
 defaultproperties
