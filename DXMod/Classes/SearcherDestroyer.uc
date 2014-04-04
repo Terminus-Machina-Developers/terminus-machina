@@ -448,8 +448,9 @@ state Jammed extends Destroying
 
         local float Xpos;
 		local ScriptedPawn enemyTarget;
-		local ModMJ12Troop P;
+		local ScriptedPawn P;
 		local PlayerPawn PP;
+		local float NearestEnemy;
 
         local vector newVec;
         //if(OldLocation != Location)
@@ -479,27 +480,23 @@ state Jammed extends Destroying
         else if(FireTimer > -10)
         {
 			//find a nearby enemy for the drone to target
-			//foreach DeusExPlayer(DeusExRootWindow(GetRootWindow()).parentPawn).RadiusActors(Class'ScriptedPawn', P, 4000)
-			
-			//{
-			//	if(!P.IsA('Animal') && Player.AICanSee(P, 1.0, false, false, true, true) > 0.0)
-			//	{
-			//		enemyTarget = P;
-			//	}
-			//}
-
-			//try killing a Tyr for now
 			PP = GetPlayerPawn();
-			foreach PP.AllActors(class'ModMJ12Troop', P){
-				enemyTarget = P;
+			NearestEnemy = 1000; //only target enemies within 1000 units
+			foreach PP.AllActors(class'ScriptedPawn', P){
+				//if the scripted pawn is hostile
+				//try targetting only cybersec for now
+				if (P.Alliance=='CyberSec' && P.LineOfSightTo(PP))
+				{
+					enemyTarget = P;
+				}
 			}
 			
 			//enemyTarget = AquireTarget();
-			//if (enemyTarget != '0')
-			//{
+			if (enemyTarget != None)
+			{
 			GetPlayerPawn().ClientMessage("Drone has acquired enemy target");
 			FireMissilesAtEnemy(enemyTarget);
-			//}
+			}
             FireTimer = -20;
             FinishTimer = 8;
         }
