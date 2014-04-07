@@ -487,7 +487,10 @@ state Jammed extends Destroying
 				//try targetting only cybersec for now
 				if (P.Alliance=='CyberSec' && P.LineOfSightTo(PP))
 				{
-					enemyTarget = P;
+					if (enemyTarget == None || P.DistanceFromPlayer < enemyTarget.DistanceFromPlayer)
+					{
+						enemyTarget = P;
+					} 
 				}
 			}
 			
