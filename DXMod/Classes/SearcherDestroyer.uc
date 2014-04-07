@@ -450,7 +450,6 @@ state Jammed extends Destroying
 		local ScriptedPawn enemyTarget;
 		local ScriptedPawn P;
 		local PlayerPawn PP;
-		local float NearestEnemy;
 
         local vector newVec;
         //if(OldLocation != Location)
@@ -481,11 +480,10 @@ state Jammed extends Destroying
         {
 			//find a nearby enemy for the drone to target
 			PP = GetPlayerPawn();
-			NearestEnemy = 1000; //only target enemies within 1000 units
 			foreach PP.AllActors(class'ScriptedPawn', P){
 				//if the scripted pawn is hostile
 				//try targetting only cybersec for now
-				if (P.Alliance=='CyberSec' && P.LineOfSightTo(PP))
+				if (P.Alliance=='CyberSec' && P.LineOfSightTo(PP, true))
 				{
 					if (enemyTarget == None || P.DistanceFromPlayer < enemyTarget.DistanceFromPlayer)
 					{
