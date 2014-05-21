@@ -1,7 +1,7 @@
 //-----------------------------------------------------------
 //
 //-----------------------------------------------------------
-class ComfreyBush expands ScrapDispenser;
+class ComfreyBush expands DispenserBush;
 
 defaultproperties
 {
