@@ -483,7 +483,7 @@ state Jammed extends Destroying
 			foreach PP.AllActors(class'ScriptedPawn', P){
 				//if the scripted pawn is hostile
 				//try targetting only cybersec for now
-				if (P.Alliance=='CyberSec' && P.LineOfSightTo(PP, true))
+				if ((P.Alliance=='CyberSec' && P.LineOfSightTo(PP, true))||(P.GetAllianceType(PP.alliance) == ALLIANCE_Hostile))
 				{
 					if (enemyTarget == None || P.DistanceFromPlayer < enemyTarget.DistanceFromPlayer)
 					{
