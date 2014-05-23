@@ -1,7 +1,7 @@
 //-----------------------------------------------------------
 //
 //-----------------------------------------------------------
-class TomagraniteBush expands ScrapDispenser;
+class TomagraniteBush expands DispenserBush;
 
 defaultproperties
 {
