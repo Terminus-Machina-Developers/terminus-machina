@@ -1,7 +1,7 @@
 //=============================================================================
 // KwajCarcass.
 //=============================================================================
-class KwajFineCarcass extends DeusExCarcass;
+class KwajCarcass extends DeusExCarcass;
 
 defaultproperties
 {
