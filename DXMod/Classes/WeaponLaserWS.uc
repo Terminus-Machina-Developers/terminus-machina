@@ -34,7 +34,8 @@ defaultproperties
      GoverningSkill=Class'DeusEx.SkillWeaponPistol'
      NoiseLevel=0.010000 //same noise level as stealth pistol
      EnviroEffective=ENVEFF_Air
-     ShotTime=1.500000
+     //ShotTime=1.500000
+	 ShotTime=0.1
      reloadTime=2.000000
      HitDamage=400
      maxRange=6000000 //assuming each DX unit is about 1.5 inches
@@ -57,15 +58,17 @@ defaultproperties
      bCanHaveModReloadTime=True
      bCanHaveModRecoilStrength=True
      AmmoName=Class'DeusEx.AmmoLaserBattery'
-     ReloadCount=1
-     PickupAmmoCount=1
-     bInstantHit=True
+     //ReloadCount=1
+	ReloadCount=500
+     //PickupAmmoCount=1
+     PickupAmmoCount=500
+	 bInstantHit=True
      FireOffset=(X=-20.000000,Y=2.000000,Z=30.000000)
      shakemag=50.000000
      FireSound=Sound'DXModSounds.Misc.EMPgun'
      AltFireSound=Sound'DeusExSounds.Weapons.ProdReloadEnd'
      CockingSound=Sound'DeusExSounds.Weapons.RifleReload'
-     SelectSound=Sound'DeusExSounds.Weapons.RifleSelect'
+     SelectSound=Sound'DeusExSounds.Weapons.ProdReloadEnd'
      InventoryGroup=25
      ItemName="PWNER"
      PlayerViewOffset=(X=20.000000,Y=-2.000000,Z=-30.000000)

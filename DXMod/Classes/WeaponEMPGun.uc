@@ -80,7 +80,7 @@ defaultproperties
      FireSound=Sound'DXModSounds.Misc.EMPgun'
      AltFireSound=Sound'DeusExSounds.Weapons.ProdReloadEnd'
      CockingSound=Sound'DeusExSounds.Weapons.RifleReload'
-     SelectSound=Sound'DeusExSounds.Weapons.RifleSelect'
+     SelectSound=Sound'DeusExSounds.Weapons.ProdReloadEnd'
      InventoryGroup=25
      ItemName="EMP Gun"
      PlayerViewOffset=(X=20.000000,Y=-2.000000,Z=-30.000000)
