@@ -1,7 +1,7 @@
 //-----------------------------------------------------------
 //
 //-----------------------------------------------------------
-class AloeBush expands ScrapDispenser;
+class AloeBush expands DispenserBush;
 
 defaultproperties
 {

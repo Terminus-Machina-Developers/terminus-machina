@@ -1,7 +1,7 @@
 //-----------------------------------------------------------
 //
 //-----------------------------------------------------------
-class HealingBush expands ScrapDispenser;
+class HealingBush expands DispenserBush;
 
 defaultproperties
 {

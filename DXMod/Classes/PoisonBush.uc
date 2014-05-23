@@ -1,7 +1,7 @@
 //-----------------------------------------------------------
 //
 //-----------------------------------------------------------
-class PoisonBush expands ScrapDispenser;
+class PoisonBush expands DispenserBush;
 
 defaultproperties
 {
