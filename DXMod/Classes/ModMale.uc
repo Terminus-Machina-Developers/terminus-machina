@@ -34,6 +34,7 @@ var bool bMultiCopiesAllowed;
 var bool bWirelessConnection;
 var bool bResetRunSilent;
 var bool bNoDroneStrike;
+var bool bJammedDrones;
 var Beam b1, b2;
 
 // Schematics
