@@ -224,7 +224,7 @@ state Destroying extends Active
         local vector newVec;
 
         PP = GetPlayerPawn();
-        if(ModMale(PP).bNoDroneStrike)
+        if(ModMale(PP).bJammedDrones)
         {
 			PP.ClientMessage("Searcher-Destroyer drone jammed");
             GotoState('Jammed');

@@ -15,13 +15,14 @@ state Activated
 		local DeusExPlayer player;
 		local PlayerPawn PP;
 		Super.Tick(deltaTime);
-		ConsumptionRate = 1.0; //60% bioelectric consumed per minute
+		//ConsumptionRate = 1.0; //60% bioelectric consumed per minute
+		ConsumptionRate = 0.001;
 		player = DeusExPlayer(Owner);
 		PP = GetPlayerPawn();
 
 		if (player.Energy > 0)
 		{
-			ModMale(PP).bNoDroneStrike = true;
+			ModMale(PP).bJammedDrones = true;
 		    player.Energy -= (ConsumptionRate * deltaTime);
 		} else 
 		{
@@ -70,7 +71,7 @@ state DeActivated
 
 		player = DeusExPlayer(Owner);
 		PP = GetPlayerPawn();
-		ModMale(PP).bNoDroneStrike = false;
+		ModMale(PP).bJammedDrones = false;
 	}
 }
 
