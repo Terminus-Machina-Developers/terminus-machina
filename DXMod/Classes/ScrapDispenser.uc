@@ -77,4 +77,5 @@ defaultproperties
      Mesh=LodMesh'DeusExDeco.VendingMachine'
      CollisionRadius=34.000000
      CollisionHeight=50.000000
+	 Mass=50.000000
 }
